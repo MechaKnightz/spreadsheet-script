@@ -4,12 +4,14 @@ import urllib.request
 import urllib
 import sys
 
-class Person:
+#data structure storage
+class Entry:
   def __init__(self, issue, pr, user):
     self.issue = issue
     self.pr = pr
     self.user = user
 
+#loads parameters into variables, asks for them if not provided
 if len(sys.argv) > 1:
     g = Github(sys.argv[1])
 else:
@@ -34,6 +36,7 @@ else:
     print("enter column name: ")
     columnName = input()
 
+#iterating through github repo, project, columns
 for repoItr in g.get_user().get_repos():
     if repoItr.name == repoName:
         repo = repoItr
@@ -50,12 +53,14 @@ for columnItr in project.get_columns():
 
 pRequests = list()
 
+#iterating through column cards and saves the pull requests
 for cardItr in column.get_cards():
     if(hasattr(cardItr.get_content(), "pull_request")):
         pRequests.append(cardItr.get_content().as_pull_request())
 
 entries = list()
 
+#gets the issues and saves a new entry with correct data for each issue respectively
 for pRequest in pRequests:
     res = urllib.request.urlopen(pRequest.html_url).read()
 
@@ -65,8 +70,9 @@ for pRequest in pRequests:
     issues = [x["href"] for x in input]
 
     for issue in issues:
-        entries.append(Person(issue, pRequest.html_url, pRequest.user.login))
+        entries.append(Entry(issue, pRequest.html_url, pRequest.user.login))
 
+#writes the output to the output file
 output = ""
 
 for entry in entries:
