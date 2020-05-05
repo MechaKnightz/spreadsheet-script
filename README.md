@@ -10,4 +10,4 @@ Run it from the command line with arguments:
 
 **Example:**
 
-script.py inserttokenhere123 LenaSYS G4M Merged
+```script.py inserttokenhere123 LenaSYS G4M Merged```
