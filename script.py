@@ -10,26 +10,26 @@ class Person:
     self.pr = pr
     self.user = user
 
-if 0 in sys.argv:
-    g = Github(sys.argv[0])
+if len(sys.argv) > 1:
+    g = Github(sys.argv[1])
 else:
     print("enter access code: ")
     g = Github(input())
 
-if 1 in sys.argv:
-    repoName = sys.argv[1]
+if len(sys.argv) > 2:
+    repoName = sys.argv[2]
 else:
     print("enter repo name: ")
     repoName = input()
 
-if 2 in sys.argv:
-    projectName = sys.argv[2]
+if len(sys.argv) > 3:
+    projectName = sys.argv[3]
 else:
     print("enter project name: ")
     projectName = input()
 
-if 3 in sys.argv:
-    columnName = sys.argv[3]
+if len(sys.argv) > 4:
+    columnName = sys.argv[4]
 else:
     print("enter column name: ")
     columnName = input()
