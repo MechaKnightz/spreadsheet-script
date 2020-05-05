@@ -5,5 +5,6 @@ Run it from the command line with arguments:
 3. Project name
 4. Column name
 
-** Example: **
+**Example:**
+
 script.py inserttokenhere123 LenaSYS G4M Merged
