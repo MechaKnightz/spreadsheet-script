@@ -69,6 +69,9 @@ for pRequest in pRequests:
     
     issues = [x["href"] for x in input]
 
+    if not issues:
+        entries.append(Entry("", pRequest.html_url, pRequest.user.login))
+
     for issue in issues:
         entries.append(Entry(issue, pRequest.html_url, pRequest.user.login))
 
