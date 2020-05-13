@@ -3,6 +3,7 @@ from bs4 import BeautifulSoup
 import urllib.request
 import urllib
 import sys
+import time
 
 #data structure storage
 class Entry:
@@ -62,6 +63,7 @@ entries = list()
 
 #gets the issues and saves a new entry with correct data for each issue respectively
 for pRequest in pRequests:
+    print("Downloading: " + pRequest.html_url)
     res = urllib.request.urlopen(pRequest.html_url).read()
 
     soup = BeautifulSoup(res, "html.parser")
@@ -74,6 +76,8 @@ for pRequest in pRequests:
 
     for issue in issues:
         entries.append(Entry(issue, pRequest.html_url, pRequest.user.login))
+    
+    time.sleep(2)
 
 #writes the output to the output file
 output = ""
